@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shriya GP - Digital Marketing Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sage-green: #A8BCA1;
+            --terracotta: #E07A5F;
+            --beige: #F5F0E6;
+            --navy: #1C2A3A;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', 'Open Sans', sans-serif;
+            color: var(--navy);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .accent-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 80px 80px;
+            background: linear-gradient(135deg, var(--beige) 0%, var(--white) 100%);
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: var(--navy);
+        }
+
+        .hero-subtext {
+            font-size: 18px;
+            color: #5A6C7D;
+            margin-bottom: 32px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--terracotta);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(224, 122, 95, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(224, 122, 95, 0.4);
+        }
+
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-illustration {
+            width: 400px;
+            height: 400px;
+            background: var(--sage-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 80px;
+            background: var(--white);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 350px;
+            height: 400px;
+            background: var(--beige);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h2 {
+            font-size: 48px;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+
+        .about-text p {
+            font-size: 18px;
+            margin-bottom: 24px;
+            color: #5A6C7D;
+            line-height: 1.8;
+        }
+
+        .keywords {
+            display: flex;
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .keyword {
+            padding: 12px 24px;
+            background: var(--sage-green);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .fun-fact {
+            margin-top: 24px;
+            padding: 24px;
+            background: var(--beige);
+            border-radius: 12px;
+            border-left: 4px solid var(--terracotta);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 120px 80px;
+            background: var(--beige);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #5A6C7D;
+        }
+
+        .project-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, var(--sage-green), var(--terracotta));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+
+        .project-content {
+            padding: 32px;
+        }
+
+        .project-content h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .project-content p {
+            color: #5A6C7D;
+            margin-bottom: 16px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 6px 16px;
+            background: var(--beige);
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--navy);
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 120px 80px;
+            background: var(--white);
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            margin-bottom: 48px;
+        }
+
+        .skill-category h3 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-item {
+            padding: 24px;
+            background: var(--beige);
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: var(--sage-green);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        .skill-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 80px;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 48px;
+            margin-bottom: 24px;
+            color: var(--white);
+        }
+
+        .contact p {
+            font-size: 20px;
+            margin-bottom: 48px;
+            opacity: 0.9;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .contact-button {
+            padding: 16px 40px;
+            background: var(--terracotta);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: var(--sage-green);
+            transform: translateY(-2px);
+        }
+
+        .contact-button.secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+        }
+
+        .contact-button.secondary:hover {
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        /* Footer */
+        footer {
+            padding: 32px 80px;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                gap: 16px;
+                font-size: 14px;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 100px 24px 60px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-illustration {
+                width: 250px;
+                height: 250px;
+                font-size: 80px;
+                margin-top: 40px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                padding: 0 24px;
+            }
+
+            .about, .projects, .skills, .contact {
+                padding: 80px 24px;
+            }
+
+            .section-header h2, .about-text h2, .contact h2 {
+                font-size: 32px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .keywords {
+                flex-direction: column;
+            }
+        }
+
+        /* Modal for Project Details */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--white);
+            max-width: 900px;
+            margin: 80px auto;
+            border-radius: 16px;
+            padding: 48px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 32px;
+            cursor: pointer;
+            color: var(--navy);
+        }
+
+        .modal h3 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .modal-section {
+            margin: 32px 0;
+        }
+
+        .modal-section h4 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--terracotta);
+        }
+   .project-btn {
+  display: inline-block;
+  margin: 10px; /* spacing between buttons */
+  padding: 12px 24px;
+  background-color:#E07A5F; /* default purple */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.3s ease;
+}
+
+.project-btn:hover {
+  background-color: #f07d5e; /* darker on hover */
+  transform: scale(1.05);
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" class="logo">Shriya GP</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Shriya — I blend design & strategy to create digital experiences.</h1>
+            <p class="hero-subtext">Final-year engineering student · Aspiring UI/UX & Digital Marketer · Storyteller at heart</p>
+            <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-illustration">💡</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-image">
+                 <img src="images/me.png" alt="Shriya working" width="600" height="600">
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>I'm a final-year engineering student passionate about creating meaningful digital experiences. I combine strategic thinking with creative design to build campaigns and interfaces that resonate with people.</p>
+                <p>My journey spans digital marketing, UI/UX design, and content strategy. I believe in learning by doing, which is why I've created real-world mock projects that showcase my approach to problem-solving.</p>
+                <div class="keywords">
+                    <span class="keyword">Creative</span>
+                    <span class="keyword">Resilient</span>
+                    <span class="keyword">Growth-Minded</span>
+                </div>
+                <div class="fun-fact">
+                    <p>✨ <strong>Fun side:</strong> I love reading books, practicing yoga, and sketching. These keep me grounded and inspire my creative work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="section-header">
+            <h2>Featured Projects</h2>
+            <p>Case studies showcasing strategy, creativity, and impact</p>
+        </div>
+        <div class="project-grid">
+            <div class="project-card" onclick="openModal('sweetcrumbs')">
+                <div class="project-image">🍰</div>
+                <div class="project-content">
+                    <h3>Sweet Crumbs</h3>
+                    <p>Social media campaign for a local bakery building community through user-generated content</p>
+                    <div class="project-tags">
+                        <span class="tag">Social Media</span>
+                        <span class="tag">Campaign Design</span>
+                        <span class="tag">UGC Strategy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal('vedictattva')">
+                <div class="project-image">📚</div>
+                <div class="project-content">
+                    <h3>Vedic Tattva</h3>
+                    <p>EdTech platform blending ancient wisdom with modern learning through engaging content</p>
+                    <div class="project-tags">
+                        <span class="tag">Digital Marketing</span>
+                        <span class="tag">SEO</span>
+                        <span class="tag">Content Strategy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-header">
+            <h2>Skills & Tools</h2>
+            <p>My digital toolkit for creating impactful campaigns</p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>🎨 Design</h3>
+                <div class="skill-grid">
+                    <div class="skill-item">
+                        <div class="skill-icon">🎨</div>
+                        <p>Figma</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">✏️</div>
+                        <p>Canva</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🖼️</div>
+                        <p>Visual Storytelling</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🎭</div>
+                        <p>Brand Identity</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>📈 Marketing</h3>
+                <div class="skill-grid">
+                    <div class="skill-item">
+                        <div class="skill-icon">📱</div>
+                        <p>Social Media Strategy</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🔍</div>
+                        <p>SEO Basics</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">📊</div>
+                        <p>Google Analytics</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🎯</div>
+                        <p>Campaign Planning</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>💻 Other</h3>
+                <div class="skill-grid">
+                    <div class="skill-item">
+                        <div class="skill-icon">💻</div>
+                        <p>HTML/CSS</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">✍️</div>
+                        <p>Content Writing</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">📑</div>
+                        <p>Presentation Design</p>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">📈</div>
+                        <p>Data Analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Let's Create Something Amazing Together</h2>
+        <p class="accent-text">Drop me a message and let's start a conversation</p>
+        <div class="contact-buttons">
+            <a href="mailto:shriyagp30@gmail.com" class="contact-button">Email Me</a>
+            <a href="https://linkedin.com/in/shriya-gp-989879268" class="contact-button secondary" target="_blank">LinkedIn</a>
+            <a href="https://drive.google.com/file/d/16EKL1nh9a2vrliKcViuQb55HOmSm789G/view?usp=sharing" class="contact-button secondary">Download Resume</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-tagline">Designing for clarity. Growing through curiosity.</p>
+        <p style="margin-top: 16px; opacity: 0.7;">© 2025 Shriya GP. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for Sweet Crumbs -->
+    <div id="sweetcrumbs-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('sweetcrumbs')">&times;</span>
+            <h3>Sweet Crumbs - Social Media Campaign</h3>
+            <p style="color: #5A6C7D; font-size: 18px; margin-bottom: 32px;">Building a community-driven brand presence for a local bakery</p>
+            
+            <div class="modal-section">
+                <h4>Problem</h4>
+                <p>Sweet Crumbs, a small local bakery, needed to increase its social media presence and build customer loyalty among young adults and families. The challenge was standing out in a crowded market while maintaining authenticity.</p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Process</h4>
+                <p><strong>Target Audience Research:</strong> Identified two key personas - Riya (23, college student) and Arun (29, young professional) - who value Instagrammable food and meaningful discounts.</p>
+                <p><strong>Campaign Strategy:</strong> Developed #CrumbsOfHappiness campaign encouraging customers to share photos with their treats in exchange for discounts. Created a content calendar balancing promotional posts, engagement content, and user-generated content.</p>
+                <p><strong>Visual Identity:</strong> Designed consistent pastel-toned social media posts with a friendly, approachable aesthetic that resonates with the target demographic.</p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Solution</h4>
+                <p>Launched an integrated social media campaign featuring:</p>
+                <ul style="margin-left: 24px; line-height: 2;">
+                    <li>Weekly content calendar with polls, quotes, festive offers, and UGC highlights</li>
+                    <li>Instagram Reels showing behind-the-scenes baking process</li>
+                    <li>Targeted paid ads (Buy 1 Get 1 offers) for weekend sales boost</li>
+                    <li>Community engagement through hashtag campaign</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h4>Results</h4>
+                <p><strong>Hypothetical Analytics:</strong></p>
+                <ul style="margin-left: 24px; line-height: 2;">
+                    <li>30% increase in engagement rate</li>
+                    <li>250+ new followers monthly</li>
+                    <li>₹10,000 revenue from paid ads</li>
+                    <li>4.5% CTR (above industry average of 2%)</li>
+                    <li>Increased brand trust through authentic UGC content</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h4>Skills Used</h4>
+                <div class="project-tags" style="margin-top: 16px;">
+                    <span class="tag">Social Media Strategy</span>
+                    <span class="tag">Canva Design</span>
+                    <span class="tag">Content Calendar Planning</span>
+                    <span class="tag">Campaign Analytics</span>
+                    <span class="tag">Audience Personas</span>
+                </div>
+            </div>
+             <a href="https://drive.google.com/file/d/1AsW0-cW_Q7MH7TF0YNVXVEjr_dnDLIwv/view?usp=sharing" 
+   class="project-btn" target="_blank">
+   🚀 View Project
+</a>
+        </div>
+    </div>
+
+    <!-- Modal for Vedic Tattva -->
+    <div id="vedictattva-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('vedictattva')">&times;</span>
+            <h3>Vedic Tattva - EdTech Digital Marketing</h3>
+            <p style="color: #5A6C7D; font-size: 18px; margin-bottom: 32px;">Blending ancient wisdom with modern learning through strategic digital marketing</p>
+            
+            <div class="modal-section">
+                <h4>Problem</h4>
+                <p>Vedic Tattva needed to establish itself as a credible EdTech platform that uniquely combines traditional Vedic methodologies with modern subjects. The challenge was reaching both students struggling with conventional learning and parents seeking value-driven education.</p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Process</h4>
+                <p><strong>Brand Identity:</strong> Created a visual identity featuring lotus flame symbolism, blending orange (energy) and blue (trust) colors with clean UI for accessibility.</p>
+                <p><strong>Multi-Channel Strategy:</strong> Developed #LearnWithWisdom campaign featuring weekly educational reels, carousel posts blending Vedic math shortcuts with modern techniques, and informative content for parents.</p>
+                <p><strong>SEO & Analytics:</strong> Implemented SEO strategy targeting keywords like "vedic maths online" and "holistic learning," while running Meta ads to drive sign-ups.</p>
+            </div>
+
+            <div class="modal-section">
+                <h4>Solution</h4>
+                <p>Launched comprehensive digital marketing campaign including:</p>
+                <ul style="margin-left: 24px; line-height: 2;">
+                    <li>Weekly content calendar with educational reels, carousels, polls, and parent-focused posts</li>
+                    <li>Targeted Meta ads with strong CTAs for course enrollment</li>
+                    <li>SEO optimization for organic reach</li>
+                    <li>Student testimonials and UGC for community building</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h4>Results</h4>
+                <p><strong>Hypothetical Analytics (14-day campaign):</strong></p>
+                <ul style="margin-left: 24px; line-height: 2;">
+                    <li><strong>Google Analytics:</strong> 950 sessions, 800 new users, 1m 10s avg. session</li>
+                    <li><strong>SEO:</strong> Domain score 11/100, 120 organic visitors/month, 7 keywords ranked</li>
+                    <li><strong>Meta Ads:</strong> 8,500 impressions, 320 clicks, 3.76% CTR, 34 sign-ups, 2 paid enrollments</li>
+                    <li>7% conversion rate with 4.3% ROI</li>
+                    <li>30% increase in engagement, 20% increase in parent engagement</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h4>Skills Used</h4>
+                <div class="project-tags" style="margin-top: 16px;">
+                    <span class="tag">Digital Marketing</span>
+                    <span class="tag">SEO Strategy</span>
+                    <span class="tag">Google Analytics</span>
+                    <span class="tag">Meta Ads Manager</span>
+                    <span class="tag">Content Strategy</span>
+                    <span class="tag">Visual Identity Design</span>
+                </div>
+            </div>
+            <a href="https://drive.google.com/file/d/14Cevv-Zg9M52Fz_AwzmIBH3cbjhBW1gS/view?usp=sharing" 
+   class="project-btn" target="_blank">
+   📚 View Project
+</a>
+        </div>
+    </div>
+
+    <script>
+        function openModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .skill-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
